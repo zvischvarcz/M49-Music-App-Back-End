@@ -241,7 +241,7 @@ const removeFavAlbum = async (req, res) => {
 
 const getArtist = async (req, res) => {
     try {
-        const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/artist/?q=${req.body.name}`, {
+        const response = await fetch(`https://api.deezer.com/search/artist/?q=${req.body.name}`, {
           method: "GET",
           headers: {
               "Content-Type" : "application/json"
@@ -259,7 +259,7 @@ const getArtist = async (req, res) => {
 
 const getAlbum = async (req, res) => {
     try {
-        const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album/?q=${req.body.name}`, {
+        const response = await fetch(`https://api.deezer.com/search/album/?q=${req.body.name}`, {
           // mode: "no-cors",
           method: "GET",
           headers: {
