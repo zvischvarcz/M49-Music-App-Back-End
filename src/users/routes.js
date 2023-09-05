@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
 const { hashPass, comparePass, tokenCheck } = require("../middleware")
-const { registerUser, login, updateUser, deleteUser, getAllUsers, addFavAlbum, addFavArtist, removeFavArtist, removeFavAlbum } = require("./controllers")
+const { registerUser, login, updateUser, deleteUser, getAllUsers, addFavAlbum, addFavArtist, removeFavArtist, removeFavAlbum, getAlbum, getArtist } = require("./controllers")
  
 const userRouter = Router();
 
@@ -18,6 +18,8 @@ userRouter.put("/users/addFavAlbum", addFavAlbum)
 userRouter.put("/users/removeFavArtist", removeFavArtist)
 userRouter.put("/users/removeFavAlbum", removeFavAlbum)
 
+userRouter.post("/artists", getArtist)
+userRouter.post("/albums", getAlbum)
 
 
 
