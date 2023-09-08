@@ -25,6 +25,11 @@ const User = connection.define("User", {
         allowNull: false,
         defaultValue: ""
     },
+    favoriteAlbums: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: ""
+    }
 
     
 },
