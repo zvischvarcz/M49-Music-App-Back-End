@@ -257,44 +257,6 @@ const removeFavAlbum = async (req, res) => {
     }
 }
 
-// const getArtist = async (req, res) => {
-//     try {
-//         const response = await fetch(`https://api.deezer.com/search/artist/?q=${req.body.name}`, {
-//             mode: "no-cors",
-//           method: "GET",
-//           headers: {
-//               "Content-Type" : "application/json"
-//           }
-//       })
-//         const data = response.json()
-//         res.status(200).json({data: data})
-//     }
-//     catch (error) {
-//         res.status(500).json({errorMessage: error.message, error: error})
-//     }
-// }
-
-
-
-// const getAlbum = async (req, res) => {
-//     try {
-//         const response = await fetch(`https://api.deezer.com/search/album/?q=${req.body.name}`, {
-//             mode: "no-cors",
-//           method: "GET",
-//           headers: {
-//               "Content-Type" : "application/json"
-//           }
-//       })
-//         const data = response.json()
-//         res.status(200).json({data: data})
-//     }
-//     catch (error) {
-//         res.status(500).json({errorMessage: error.message, error: error})
-//     }
-// }
-
-
-
 module.exports = {
     registerUser,
     login,
@@ -305,7 +267,5 @@ module.exports = {
     addFavArtist,
     addFavAlbum,
     removeFavArtist,
-    removeFavAlbum,
-    // getArtist,
-    // getAlbum
+    removeFavAlbum
 }

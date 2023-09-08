@@ -89,8 +89,27 @@ const tokenCheck = async (req, res, next) => {
     }
 }
 
+const emailCheck = async (req, res, next) => {
+    try {
+        if (req.body.key === "email"){
+            formatEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        
+            if (!formatEmail.test(req.body.email)) {
+                throw new Error("Email incorrect format");
+            }
+
+        next()
+        }
+        next()
+    }
+    catch (error) {
+        res.status(501).json({errorMessage: error.message, error: error})
+    }
+}
+
 module.exports = {
     hashPass,
     comparePass,
-    tokenCheck
+    tokenCheck,
+    emailCheck
 };
