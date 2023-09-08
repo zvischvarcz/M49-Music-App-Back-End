@@ -20,11 +20,12 @@ const User = connection.define("User", {
         allowNull: false,
         defaultValue: ""
     },
-    favoriteArtists: {
+    favoriteTracks: {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: ""
-    }
+    },
+
     
 },
     {indexes: [{unique: true, fields: ["username", "email"]}]}

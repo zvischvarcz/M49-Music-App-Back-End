@@ -257,6 +257,81 @@ const removeFavAlbum = async (req, res) => {
     }
 }
 
+
+
+const addFavTrack = async (req, res) => {
+    try{
+        const token = req.header("Authorization")
+        const decodedToken = jwt.verify(token, process.env.SECRET_KEY)
+        const user = await User.findOne({
+            where: {
+                id: decodedToken.id
+            }
+        })
+            
+        
+        if (user.favoriteTracks !== "") {
+            await User.update({
+                favoriteAlbums : user.favoriteTracks + `, ${req.body.newTrack}` 
+            }, {
+                where: {
+                    username: user.username
+                }
+            });
+        } else {
+            updatedUser = await User.update({
+                favoriteTracks : req.body.newTrack
+            }, {
+                where: {
+                    username: user.username
+                }
+            });
+        }
+
+        res.status(200).json({
+            message: "Added a new favourite track"
+        })
+    }
+    catch (error) {
+        res.status(500).json({errorMessage: error.message, error: error})
+    }
+}
+
+const removeFavTrack = async (req, res) => {
+    try {
+        let commaPosition
+        const token = req.header("Authorization")
+        const decodedToken = jwt.verify(token, process.env.SECRET_KEY)
+        const user = await User.findOne({
+            where: {
+                id :decodedToken.id
+            }
+        })
+        let array = user.favoriteTracks.split(", ")
+        if (array.indexOf(req.body.removedTrack) === 0 && array.length === 1) {
+            commaPosition = `${req.body.removedTrack}`
+        } else if (array.indexOf(req.body.removedTrack) === 0) {
+            commaPosition = `${req.body.removedTrack}, `
+        } else {
+            commaPosition = `, ${req.body.removedTrack}`
+        } 
+
+        await User.update({
+            favoriteTracks: user.favoriteTracks.replace(`${commaPosition}`, "")
+        }, {
+            where: {
+                username: user.username
+            }
+        })
+        res.status(200).json({
+            message: "Successfully removed track"
+        })
+    }
+    catch (error) {
+        res.status(500).json({errorMessage: error.message, error: error})
+    }
+}
+
 module.exports = {
     registerUser,
     login,
@@ -267,5 +342,7 @@ module.exports = {
     addFavArtist,
     addFavAlbum,
     removeFavArtist,
-    removeFavAlbum
+    removeFavAlbum,
+    removeFavTrack,
+    addFavTrack
 }
