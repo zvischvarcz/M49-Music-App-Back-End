@@ -94,7 +94,7 @@ const emailCheck = async (req, res, next) => {
         if (req.body.key === "email"){
             formatEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         
-            if (!formatEmail.test(req.body.email)) {
+            if (!formatEmail.test(req.body.value)) {
                 throw new Error("Email incorrect format");
             }
 
