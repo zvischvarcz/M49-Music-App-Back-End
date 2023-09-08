@@ -98,9 +98,11 @@ const emailCheck = async (req, res, next) => {
                 throw new Error("Email incorrect format");
             }
 
-        next()
+            next()
+        } else {
+            next()
         }
-        next()
+        
     }
     catch (error) {
         res.status(501).json({errorMessage: error.message, error: error})
