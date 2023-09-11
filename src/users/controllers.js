@@ -272,14 +272,14 @@ const addFavTrack = async (req, res) => {
         
         if (user.favoriteTracks !== "") {
             await User.update({
-                favoriteAlbums : user.favoriteTracks + `, ${req.body.newTrack}` 
+                favoriteTracks : user.favoriteTracks + `, ${req.body.newTrack}` 
             }, {
                 where: {
                     username: user.username
                 }
             });
         } else {
-            updatedUser = await User.update({
+            await User.update({
                 favoriteTracks : req.body.newTrack
             }, {
                 where: {
